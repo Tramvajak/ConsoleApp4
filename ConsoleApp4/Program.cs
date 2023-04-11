@@ -16,6 +16,8 @@ namespace ConsoleApp4
 
 
             Console.WriteLine();
+
+            // поиск всех подзадач в корневом каталоге
             int i = 0;
             string[] allfiles = Directory.GetFiles(Environment.CurrentDirectory);
             foreach (string filename in allfiles)
@@ -28,6 +30,7 @@ namespace ConsoleApp4
                 }
 
             }
+
             // результат выполнение позадач
             new Result();
 

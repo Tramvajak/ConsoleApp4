@@ -17,6 +17,7 @@ namespace ConsoleApp4
         {
             LoadFromFile();
         }
+
         // Чтение задание из файла 
         private static void LoadFromFile()
         {
@@ -45,24 +46,25 @@ namespace ConsoleApp4
             Console.WriteLine($"Create {CountWork} work!");
         }
         // Разбиение на подзадачи
+        // из матрици смежности графа берется маршрут имеющий длину N и не 
+        // проходящий через один и тот же город дважды. Получаем матрицу NxN с необохомым маршрутом.
+        // и после этого записывается в файл для отправки на другую машину для выполнения задачи.
         private static void GetPer(string[] list, int[][] mass, int N)
         {
             string[] path = new string[N];
 
             int[][] pathmass = new int[N][];
 
+            // разбивания матрици на части 
             for (int i = 0; i < N; i++)
             {
                 path[i] = list[0];
                 list = list.Skip(1).ToArray();
 
-                int[] _x = mass[i];
-
-                
             }
             if (path.Length == N)
             {
-                int[] _x = new int[N];
+                // удаления повторяющего маршрута
 
                 for (int i = 0; i < N; i++)
                 {
@@ -78,6 +80,7 @@ namespace ConsoleApp4
                     mass[g] = mass[g].Skip(N).ToArray();
                 }
 
+                // сохранение в файл job#.jb
                 string text = ParseMassToString(pathmass) + String.Join("", path);
                 SaveFromFile(String.Format("job{0}.jb", ++CountWork), text);
             }
@@ -86,6 +89,7 @@ namespace ConsoleApp4
                 GetPer(list, mass, N);
             }
         }
+        // метод сохранения файла
         private static void SaveFromFile(string filename, string text)
         {
             using (StreamWriter sw = new StreamWriter(filename))
@@ -94,6 +98,7 @@ namespace ConsoleApp4
             }
             Console.WriteLine($"Save from {filename}");
         }
+        // метот конвертации из текста в массив вес ребер
         private static int[][] ParseStringToMass(string text)
         {
             int x = 0;
@@ -120,6 +125,7 @@ namespace ConsoleApp4
             return mass;
 
         }
+        // метот конвертации из массив вес ребер в текст
         private static string ParseMassToString(int[][] mass)
         {
             string text = null;
