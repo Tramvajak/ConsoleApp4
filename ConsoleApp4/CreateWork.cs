@@ -19,7 +19,6 @@ namespace ConsoleApp4
         }
 
         // Чтение задание из файла 
-        // считывается матрица смежности с длиной маршрута
         private static void LoadFromFile()
         {
             string text = null;
@@ -47,7 +46,7 @@ namespace ConsoleApp4
             Console.WriteLine($"Create {CountWork} work!");
         }
         // Разбиение на подзадачи
-        // из матрицы смежности графа берется маршрут имеющий длину N и не 
+        // из матрици смежности графа берется маршрут имеющий длину N и не 
         // проходящий через один и тот же город дважды. Получаем матрицу NxN с необохомым маршрутом.
         // и после этого записывается в файл для отправки на другую машину для выполнения задачи.
         private static void GetPer(string[] list, int[][] mass, int N)
@@ -56,7 +55,7 @@ namespace ConsoleApp4
 
             int[][] pathmass = new int[N][];
 
-            // разбивания матрицы на части 
+            // разбивания матрици на части 
             for (int i = 0; i < N; i++)
             {
                 path[i] = list[0];
